@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { MyContext } from "../../myContext";
+import { useAuth } from "../../hooks/auth";
 import { Background, Container, Form } from "./styles"; 
 import { Link } from "react-router-dom";
+
 import { FiMail, FiLock } from 'react-icons/fi'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 
 export function SignIn(){
 
-  const data = useContext(MyContext)
+  const data = useAuth()
   console.log("MEU CONTEXTO =>", data)
 
   return(
