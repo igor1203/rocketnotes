@@ -13,6 +13,19 @@ import { Note } from '../../components/Note'
 
 export function Home(){
   const [tags, setTags] = useState([])
+  const [tagsSelected, setTagsSelected] = useState([])
+
+  function handleTagSelected( tagName ){   
+    const alreadySelected = tagsSelected.includes(tagName)
+    
+    if(alreadySelected) {
+       const filteredTags = tagsSelected.filter(tag => tag !== tagName)
+       setTagsSelected(filteredTags)
+       
+      } else {
+        setTagsSelected(prevState => [...prevState, tagName])
+      }
+  }
 
   useEffect(() => {
     async function fetchTags() {
@@ -34,15 +47,18 @@ export function Home(){
       <Menu>
         <li>
           <ButtonText
-            title="Todos" 
-            isActive 
+            title="Todos"
+            onClick={() => handleTagSelected("Todos")} 
+            isActive={tagsSelected.length === 0} 
           />
         </li>
         {
           tags && tags.map(tag => (
             <li key={String(tag.id)}>
               <ButtonText 
-              title={tag.name}
+                title={tag.name}
+                onClick={() => handleTagSelected(tag.name)}
+                isActive={tagsSelected.includes(tag.name)} 
               />
             </li>
           ))
