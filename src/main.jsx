@@ -11,7 +11,7 @@ import { Routes } from './routes'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode >
+  <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <AuthProvider>
